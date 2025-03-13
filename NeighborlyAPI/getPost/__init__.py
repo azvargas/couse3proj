@@ -10,12 +10,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if id:
         try:
-            url = "localhost"  # TODO: Update with appropriate MongoDB connection information
+            url = "mongodb+srv://azvargas:Pe1agat0s*_x@udacitycluster.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
             client = pymongo.MongoClient(url)
-            database = client['azure']
+            database = client['project3db']
             collection = database['posts']
 
-            query = {'_id': ObjectId(id)}
+            query = {'_id': id}
+            print(query)
             result = collection.find_one(query)
             result = dumps(result)
 
